@@ -54,6 +54,44 @@ class singleLl{
         prev.next = newNode;
 
     }
+    public void deleteAtbegin(){
+        if(head == null){
+            return;
+        }
+        head = head.next;
+    }
+    public void deleteAtEnd(){
+        if(head == null){
+            return;
+        }
+        Node temp = head;
+        while(temp.next.next != null){
+            temp = temp.next;
+        }
+        temp.next = null;
+        tail = temp;
+    }
+    public void deleteAtIndex(int pos){
+        Node prev = head;
+        Node cur = head;
+        for(int i=1; i<pos; i++){
+            prev = cur;
+            cur = cur.next;
+        }
+        prev.next = cur.next;
+        cur.next = null;
+    }
+    public int search(int data,int l){
+        Node temp = head;
+        int i;
+        for(i=1; i<=l; i++){
+            if(temp.data == data){
+                break;
+            }
+            temp = temp.next;
+        }
+        return i;
+    }
     public void printL(){
         Node temp = head;
         while(temp.next!=null){
@@ -76,5 +114,10 @@ class singleLl{
         System.out.println("head: "+list.head.data);
         System.out.println("tail: "+list.tail.data);
         System.out.println("length of singleLl is : "+list.lengthLl());
+        System.out.println("element found at: "+list.search(4,list.lengthLl()));
+        list.deleteAtbegin();
+        list.deleteAtEnd();
+        list.deleteAtIndex(3);
+        list.printL();
     }
 }
